@@ -1,0 +1,25 @@
+<div class="login-container">
+  <div class="login-content">
+    <h2>LOGIN</h2>
+    <p>Если ты уже зарегистрирован.</p>
+
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+
+      <div [hidden]="hidden">
+        <p>
+          <label for="loginString">Логин: </label>
+          <input type="text" id="loginString" formControlName="login">
+        </p>
+
+        <p>
+          <label for="passwordString">Пароль: </label>
+          <input type="text" id="passwordString" formControlName="password">
+        </p>
+      </div>
+
+      <button class="btn_login">LOGIN</button>
+
+    </form>
+
+  </div>
+</div>

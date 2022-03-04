@@ -1,0 +1,18 @@
+.login-main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(150deg, #aac4bc 0%, #eca8a8 100%, #eed5a9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
