@@ -1,27 +1,14 @@
-# ThreePages
+- создать приложение на ангуляре, в котором будет три страницы: стартовая страница в формой логина, страница поиска по записям, страница 404
+- страницы должны подгружаться лениво (лези лоуд)
+- данные для авторизации можно напилить в json файле
+- в форме логина должны присутствовать поля логин, пароль; и кнопка входа. при незаполненных полях или неверном логине/пароле выводить ошибку
+- предусмотреть кнопку выхода на нужных страницах
+- посе перезапуска браузера юзер должен быть разлогинен
+- после успешной авторизации вывести форму поиска записей (например, фамилия имя и отчество сотрудников компании) -текстовый строковый инпут и кнопка "найти"
+- данные для поиска можно определить в enum
+- при наборе текста в форму поиска определить возможность всплывающих подсказок из имеющихся записей
+- осуществлять выбор подсказок в строке поиска не чаще чем раз в полсекунды
+- при выборе нужного элемента вывести его содержимое под формой поиска
+- при открытии несуществующего урла сайта должна отображаться страница 404
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+для выполнения рекомендуется использовать ангуляр формы, rxjs
