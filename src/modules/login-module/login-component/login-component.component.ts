@@ -20,7 +20,7 @@ import {User} from "../../../interfaces/user";
 export class LoginComponentComponent implements OnInit{
 
   constructor(private browserModule: BrowserModule,
-              private authorizeService: AuthorizeService) {
+              private service: AuthorizeService) {
   }
 
   //private variant$: Observable<User> = this.authorizeService.checkLogin("","").pipe();

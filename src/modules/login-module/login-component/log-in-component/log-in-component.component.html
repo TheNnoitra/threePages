@@ -1,9 +1,8 @@
-<div class="signup-container">
-  <div class="signup-content">
-    <h2>SIGN UP</h2>
-    <p>Если еще не зарегистрирован.</p>
-
-    <form [formGroup]="registerForm" (submit)="onSubmit()">
+<div class="login-container">
+  <div class="login-content">
+    <h2>LOGIN</h2>
+    <p *ngIf="errorMessageEvent$ | async">{{errorMessageEvent$ | async}}</p>
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
 
       <div [hidden]="hidden">
         <p>
@@ -17,7 +16,7 @@
         </p>
       </div>
 
-      <button class="btn_sign_up">LOGIN</button>
+      <button class="btn_login">LOGIN</button>
 
     </form>
 

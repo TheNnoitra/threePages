@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of, map, catchError, throwError} from 'rxjs';
+import {Observable, of, first, take, from, tap} from 'rxjs';
 import {User} from "../interfaces/user";
+import {Users} from "../mock-data/mock-users";
 
 
 @Injectable({
@@ -10,15 +10,18 @@ import {User} from "../interfaces/user";
 
 export class AuthorizeService {
 
-  constructor(private readonly http: HttpClient) {
+  constructor() {
   }
 
   public register(login: string, password: string): Observable<User> {
-    return of();
+    Users.push({login: login, password: password} as User)
+    return ;
   }
 
   public login(login: string, password: string): Observable<User> {
-    return of();
+    return from(Users).pipe(
+      first(f => f.login === login && f.password === password)
+    );
   }
 
   public checkLogin(login: string, password: string): Observable<User> {
