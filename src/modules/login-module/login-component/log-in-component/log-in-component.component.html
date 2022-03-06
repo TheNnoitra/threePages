@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-content">
-    <h2>LOGIN</h2>
-    <p *ngIf="errorMessageEvent$ | async">{{errorMessageEvent$ | async}}</p>
+    <h2>{{loginContent?.header}}</h2>
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
     <form [formGroup]="loginForm" (submit)="onSubmit()">
 
       <div [hidden]="hidden">
@@ -16,7 +16,7 @@
         </p>
       </div>
 
-      <button class="btn_login">LOGIN</button>
+      <button class="btn_login">{{loginContent?.button}}</button>
 
     </form>
 
