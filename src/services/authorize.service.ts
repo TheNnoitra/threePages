@@ -14,8 +14,8 @@ export class AuthorizeService {
   }
 
   public register(login: string, password: string): Observable<User> {
-    Users.push({login: login, password: password} as User)
-    return ;
+    //Users.push({login: login, password: password} as User)
+    return from(Users);
   }
 
   public login(login: string, password: string): Observable<User> {

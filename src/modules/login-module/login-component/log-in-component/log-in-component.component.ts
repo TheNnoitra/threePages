@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BehaviorSubject, from, Observable} from "rxjs";
 import {FormBuilder, FormControl} from "@angular/forms";
-import {AuthorizeService} from "../../../../services/authorize.service";
-import {Router} from "@angular/router";
+import {User} from "../../../../interfaces/user";
 
 @Component({
   selector: 'app-log-in-component',
@@ -11,13 +10,14 @@ import {Router} from "@angular/router";
 })
 export class LogInComponentComponent implements OnInit {
 
+  @Output() userModel: EventEmitter<User> = new EventEmitter<User>(true);
+  @Input() errorMessage?: string;
+  @Input() loginContent?: LoginContent;
+
   loginForm: any;
   hidden: boolean = true;
-  public errorMessageEvent$ = new BehaviorSubject<string>('');
 
-  constructor(private formBuilder: FormBuilder,
-              private authorizeService: AuthorizeService,
-              private router: Router) {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -31,15 +31,9 @@ export class LogInComponentComponent implements OnInit {
     if (this.hidden) {
       this.hidden = !this.hidden;
     } else {
-      this.authorizeService.login(this.login, this.password)
-        .subscribe({
-          next: (user) => {
-            this.router.navigate(['/search'], {queryParams: {currentUser: user}})
-          },
-          error: () => {
-            this.errorMessageEvent$.next('Пользователь с таким логином/паролем не найден')
-          }
-        })
+      this.userModel.emit(
+        {login: this.login, password: this.password} as User
+      );
     }
   }
 

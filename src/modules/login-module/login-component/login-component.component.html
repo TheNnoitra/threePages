@@ -3,10 +3,14 @@
   <div class="login-content">
 
     <!-- LOGIN -->
-    <app-log-in-component></app-log-in-component>
+    <app-log-in-component (userModel)="tryLogin($event)"
+                          [errorMessage]="loginMessage"
+                          [loginContent]="loginContent"></app-log-in-component>
 
     <!-- SIGNUP -->
-    <app-sing-up-component></app-sing-up-component>
+    <app-log-in-component (userModel)="tryRegister($event)"
+                          [errorMessage]="registerMessage"
+                          [loginContent]="registerContent"></app-log-in-component>
 
   </div>
 
