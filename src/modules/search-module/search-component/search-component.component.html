@@ -1,1 +1,13 @@
-<p>search-component works!</p>
+<div class="search-main">
+  <div style="width: 40%;
+    min-width: 400px;
+    top: 20%;
+    position: relative;">
+    <div>
+      <app-seach-bar (serachString)="search($event)"></app-seach-bar>
+    </div>
+    <div>
+      <app-seach-result [searchResult]="resultItemList"></app-seach-result>
+    </div>
+  </div>
+</div>

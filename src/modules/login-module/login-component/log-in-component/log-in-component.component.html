@@ -2,6 +2,7 @@
   <div class="login-content">
     <h2>{{loginContent?.header}}</h2>
     <p *ngIf="errorMessage">{{errorMessage}}</p>
+
     <form [formGroup]="loginForm" (submit)="onSubmit()">
 
       <div [hidden]="hidden">

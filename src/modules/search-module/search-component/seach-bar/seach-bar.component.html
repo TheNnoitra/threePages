@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <form [formGroup]="searchForm" (ngSubmit)="submit(searchStringControl)">
+
+      <div class="wrap">
+        <div class="search">
+          <input type="text" id="searchString" [formControl]="searchStringControl" class="searchTerm">
+
+          <button class="searchButton">Найти</button>
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

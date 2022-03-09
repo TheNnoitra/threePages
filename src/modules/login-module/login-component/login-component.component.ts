@@ -1,8 +1,7 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthorizeService} from "../../../services/authorize.service";
 import {User} from "../../../interfaces/user";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
 
 
 @Component({
@@ -16,7 +15,7 @@ export class LoginComponentComponent implements OnInit {
   loginMessage?: string;
 
   registerContent: LoginContent = {header: 'SIGN UP', button: 'SIGN UP'};
-  registerMessage? : string;
+  registerMessage?: string;
 
   constructor(private authorizeService: AuthorizeService,
               private router: Router) {
@@ -26,21 +25,32 @@ export class LoginComponentComponent implements OnInit {
 
   }
 
-  tryLogin(userModel: User){
+  tryLogin(userModel: User) {
     this.authorizeService.login(userModel.login, userModel.password)
       .subscribe({
         next: (user) => {
-          this.router.navigate(['/search'], {queryParams: {currentUser: user}})
+          this.router.navigate(['/search'], {queryParams: {currentUser: user.login}})
         },
-        error: () => {
-          debugger;
-          this.loginMessage = 'Пользователь с таким логином/паролем не найден';
+        error: (error) => {
+          if (error) {
+            this.loginMessage = error;
+          } else {
+            this.loginMessage = 'Пользователь с таким логином/паролем не найден';
+          }
         }
       })
   }
 
-  tryRegister(userModel: User){
-
+  tryRegister(userModel: User) {
+    this.authorizeService.register(userModel.login, userModel.password)
+      .subscribe({
+        next: (user) => {
+          this.registerMessage = 'Пользователь с таким логином/паролем уже зарегистрирован';
+        },
+        error: () => {
+          this.registerMessage = 'Регистрация прошла успешно';
+        }
+      })
   }
 
 }
