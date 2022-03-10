@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CompanyUser} from "../../../../interfaces/company.User";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-seach-result',
@@ -8,11 +9,15 @@ import {CompanyUser} from "../../../../interfaces/company.User";
 })
 export class SeachResultComponent implements OnInit {
 
-  @Input() searchResult?: CompanyUser[];
+  @Input() searchResult$?: BehaviorSubject<CompanyUser[]>;
+  public noElementsToShow: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.searchResult$?.subscribe(
+      array => this.noElementsToShow = array.length > 0
+    )
   }
 
 }

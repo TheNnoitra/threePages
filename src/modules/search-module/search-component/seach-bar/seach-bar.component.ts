@@ -13,20 +13,26 @@ export class SeachBarComponent {
 
   @Output() serachString: EventEmitter<string> = new EventEmitter<string>(true);
 
-  searchStringControl = new FormControl('', {
-    validators: [Validators.required],
-    updateOn: "submit"
-  });
+  searchStringControl = new FormControl('', Validators.required);
+  searchStringControlHelper = this.searchStringControl.valueChanges
+    .pipe(
+      debounceTime(500),
+      switchMap(m => this.searchServie.search(m))
+    );
 
   searchForm = this.formBuilder.group({
-    searchString: this.searchStringControl
-  });
+      searchString: this.searchStringControl
+    }
+  );
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private searchServie: SearchService) {
   }
 
-  submit(searchStringControl: FormControl) {
-    this.serachString.emit(searchStringControl.value);
+  submit() {
+    if (this.searchStringControl.valid) {
+      this.serachString.emit(this.searchStringControl.value);
+    }
   }
 
 }

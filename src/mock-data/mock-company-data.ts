@@ -20,5 +20,5 @@ export const CompanyUsers: CompanyUser[] = [
     FirstName: 'Ценева',
     LastName: 'Аполинария',
     MiddleName: 'Викторовна'
-  },
+  }
 ]

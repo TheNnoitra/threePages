@@ -1,13 +1,12 @@
 <div>
   <div>
-    <form [formGroup]="searchForm" (ngSubmit)="submit(searchStringControl)">
+    <form [formGroup]="searchForm" (ngSubmit)="submit()">
 
       <div class="wrap">
         <div class="search">
-          <input type="text" id="searchString" [formControl]="searchStringControl" class="searchTerm">
+          <input type="text" id="searchString" [formControl]="searchStringControl" class="searchTerm" autocomplete="off">
 
           <button class="searchButton">Найти</button>
-          <i class="fa fa-search"></i>
         </div>
       </div>
 

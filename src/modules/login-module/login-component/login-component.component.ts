@@ -29,7 +29,7 @@ export class LoginComponentComponent implements OnInit {
     this.authorizeService.login(userModel.login, userModel.password)
       .subscribe({
         next: (user) => {
-          this.router.navigate(['/search'], {queryParams: {currentUser: user.login}})
+          this.router.navigate(['/search'])
         },
         error: (error) => {
           if (error) {
