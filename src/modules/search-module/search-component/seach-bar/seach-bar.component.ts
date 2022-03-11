@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validator, Validators} from "@angular/forms";
-import {BehaviorSubject, debounceTime, map, Observable, switchMap, tap} from "rxjs";
+import {BehaviorSubject, debounceTime, from, map, Observable, of, switchMap, tap} from "rxjs";
 import {SearchService} from "../../../../services/search.service";
+import {CompanyUsers} from "../../../../mock-data/mock-company-data";
 
 @Component({
   selector: 'app-seach-bar',
@@ -17,7 +18,8 @@ export class SeachBarComponent {
   searchStringControlHelper = this.searchStringControl.valueChanges
     .pipe(
       debounceTime(500),
-      switchMap(m => this.searchServie.search(m))
+      switchMap(m => of(CompanyUsers))
+      // switchMap(m => this.searchService.search(m))
     );
 
   searchForm = this.formBuilder.group({
@@ -26,7 +28,7 @@ export class SeachBarComponent {
   );
 
   constructor(private formBuilder: FormBuilder,
-              private searchServie: SearchService) {
+              private searchService: SearchService) {
   }
 
   submit() {

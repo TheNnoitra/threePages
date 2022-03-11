@@ -4,7 +4,10 @@
 
       <div class="wrap">
         <div class="search">
-          <input type="text" id="searchString" [formControl]="searchStringControl" class="searchTerm" autocomplete="off">
+          <input type="text" id="searchString" list="searchStringControl" [formControl]="searchStringControl" class="searchTerm" autocomplete="off">
+          <datalist id="searchStringControl">
+            <option  *ngFor="let resultItem of searchStringControlHelper | async" value="{{resultItem.FirstName}}">{{resultItem.FirstName}}</option>
+          </datalist>
 
           <button class="searchButton">Найти</button>
         </div>

@@ -12,7 +12,6 @@ export class SearchService {
   }
 
   search(searchStr: string): Observable<CompanyUser[]> {
-    debugger;
     return of(CompanyUsers).pipe(
       map(m => m.filter(f => this.filterFunction(searchStr, f)))
     )
