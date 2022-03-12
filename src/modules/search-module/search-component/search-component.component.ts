@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from "../../../services/search.service";
-import {CompanyUser} from "../../../interfaces/company.User";
-import {BehaviorSubject} from "rxjs";
+import {CompanyUser} from "../../../interfaces/company-user";
+import {BehaviorSubject, Observable, Subject, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'app-search-component',
@@ -13,12 +13,13 @@ export class SearchComponentComponent {
   constructor(private searchService: SearchService) {
   }
 
-  resultItemList$: BehaviorSubject<CompanyUser[]> = new BehaviorSubject<CompanyUser[]>([]);
+  searchStr$: Subject<string> = new Subject<string>();
+  resultItemList$: Observable<CompanyUser[]> = this.searchStr$
+    .pipe(
+      switchMap(searchStr => this.searchService.search(searchStr))
+    );
 
   search(searchStr: string) {
-    this.searchService.search(searchStr)
-      .subscribe(
-        list => this.resultItemList$.next(list)
-      );
+    this.searchStr$.next(searchStr);
   }
 }

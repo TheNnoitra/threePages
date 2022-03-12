@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorizeService} from "../../../services/authorize.service";
 import {User} from "../../../interfaces/user";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponentComponent implements OnInit {
 
   loginContent: LoginContent = {header: 'LOGIN', button: 'LOGIN'};
   loginMessage?: string;
+  //loginMessage: Observable<string> = new Observable<string>();
 
   registerContent: LoginContent = {header: 'SIGN UP', button: 'SIGN UP'};
   registerMessage?: string;
@@ -26,6 +28,7 @@ export class LoginComponentComponent implements OnInit {
   }
 
   tryLogin(userModel: User) {
+
     this.authorizeService.login(userModel.login, userModel.password)
       .subscribe({
         next: (user) => {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {filter, from, map, Observable, of} from "rxjs";
 import {CompanyUsers} from "../mock-data/mock-company-data";
-import {CompanyUser} from "../interfaces/company.User";
+import {CompanyUser} from "../interfaces/company-user";
 
 @Injectable({
   providedIn: 'root'

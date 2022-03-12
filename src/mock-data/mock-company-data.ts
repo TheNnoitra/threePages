@@ -1,4 +1,4 @@
-import {CompanyUser} from "../interfaces/company.User";
+import {CompanyUser} from "../interfaces/company-user";
 
 export const CompanyUsers: CompanyUser[] = [
   {

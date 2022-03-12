@@ -8,7 +8,7 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "src/interfaces/Login Component Content.ts"
+    "src/interfaces/login-component-content.ts"
   ],
   "include": [
     "src/**/*.d.ts"
