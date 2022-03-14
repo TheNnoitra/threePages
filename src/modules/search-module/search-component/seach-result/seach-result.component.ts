@@ -7,18 +7,11 @@ import {BehaviorSubject, Observable, of, switchMap} from "rxjs";
   templateUrl: './seach-result.component.html',
   styleUrls: ['./seach-result.component.scss']
 })
-export class SeachResultComponent implements OnInit{
+export class SeachResultComponent {
 
   @Input() searchResult$?: Observable<CompanyUser[]>;
 
-  noElementsToShow?: Observable<boolean> = new BehaviorSubject(false);
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.noElementsToShow = this.searchResult$?.pipe(
-      switchMap(listArray => of(listArray.length > 0))
-    );
+  constructor() {
   }
 
 }

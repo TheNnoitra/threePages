@@ -1,6 +1,6 @@
-<div class="result-container" *ngIf="noElementsToShow">
-  <div class="result-content">
-      <div *ngFor="let resultItem of searchResult$ | async">
+<div>
+  <div>
+      <div *ngFor="let resultItem of searchResult$ | async" >
         {{resultItem.FirstName}}
       </div>
   </div>

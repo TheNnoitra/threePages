@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, first, take, from, tap, throwError} from 'rxjs';
+import {Observable, of, first, take, from, tap, throwError, switchMap, map} from 'rxjs';
 import {User} from "../interfaces/user";
 import {Users} from "../mock-data/mock-users";
 
@@ -35,7 +35,15 @@ export class AuthorizeService {
       return throwError('Не указан логин/пароль');
     }
     return from(Users).pipe(
-      first(f => f.login === login && f.password === password)
+      first(f => f.login === login && f.password === password),
+      tap(user => localStorage.setItem('storedUser', JSON.stringify(user)))
     );
+  }
+
+  get isAuthorized() : boolean {
+    debugger;
+    const userStr = localStorage.getItem('storedUser');
+    const user = userStr ? JSON.parse(userStr) : '';
+    return Users.some(f => f.login === user.login && f.password === user.password);
   }
 }
